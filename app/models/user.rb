@@ -5,8 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-  has_many :items
-  has_many :orders
+
 
   validates :nick_name, presence: true
   validates :last_name, presence: true,format: { with: /\A[^\x01-\x7E]+\z/, message: "は全角文字を使用してください" }
@@ -20,7 +19,7 @@ validate :password_complexity
 
   private 
   def password_complexity
-    if password.present? && !password.match(/\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}\z/)
+    
       errors.add :password, 'は6文字以上の半角英数字で、英字と数字の両方を含めて設定してください'
     end
   end
