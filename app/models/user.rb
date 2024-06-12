@@ -19,7 +19,7 @@ validate :password_complexity
 
   private 
   def password_complexity
-    
+    if !password.match(/\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}\z/)
       errors.add :password, 'は6文字以上の半角英数字で、英字と数字の両方を含めて設定してください'
     end
   end
