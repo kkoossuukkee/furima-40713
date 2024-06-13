@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
 
-
+   has_many :items
 
   validates :nick_name, presence: true
   validates :last_name, presence: true,format: { with: /\A[^\x01-\x7E]+\z/, message: "は全角文字を使用してください" }
