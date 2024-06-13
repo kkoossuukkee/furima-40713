@@ -25,6 +25,22 @@ class ItemsController < ApplicationController
     
   end
 
+  def edit
+    @item = Item.find(params[:id])
+    unless @item.user_id == current_user.id
+      redirect_to root_path
+      end
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path(@item.id)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
 
 
 
@@ -33,6 +49,10 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:title, :description, :category_id, :status_id, :postage_payer_id, :prefecture_id,
                                  :shipping_day_id, :price, :image).merge(user_id: current_user.id)
+  end
+
+  def find_params
+    @item = Item.find(params[:id])
   end
 
 
