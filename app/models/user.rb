@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
 
    has_many :items
+   has_many :orders
 
   validates :nick_name, presence: true
   validates :last_name, presence: true,format: { with: /\A[^\x01-\x7E]+\z/, message: "は全角文字を使用してください" }
